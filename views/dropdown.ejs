@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown - TestLab</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">🎯 TestLab</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/checkboxes">Checkboxes</a></li>
+        <li><a href="/dropdown">Dropdown</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/" class="back-link">← Kembali ke Home</a>
+
+    <div class="page-container">
+      <h1>📋 Dropdown</h1>
+      <p class="subtitle">Pilih salah satu opsi dari dropdown</p>
+
+      <div class="form-group">
+        <label for="dropdown-select">Pilih Opsi:</label>
+        <select id="dropdown-select" class="custom-select">
+          <option value="">-- Pilih Opsi --</option>
+          <option value="1">Opsi 1</option>
+          <option value="2">Opsi 2</option>
+          <option value="3">Opsi 3</option>
+          <option value="4">Opsi 4</option>
+          <option value="5">Opsi 5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dropdown-multi">Pilih Multiple (Ctrl+Click):</label>
+        <select id="dropdown-multi" class="custom-select" multiple style="height: 150px;">
+          <option value="apple">🍎 Apple</option>
+          <option value="banana">🍌 Banana</option>
+          <option value="cherry">🍒 Cherry</option>
+          <option value="grape">🍇 Grape</option>
+          <option value="orange">🍊 Orange</option>
+        </select>
+      </div>
+
+      <div class="result-box" id="result-box">
+        <h3>Pilihan Anda:</h3>
+        <p id="dropdown-result">Belum ada pilihan</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script>
+    const dropdown = document.getElementById('dropdown-select');
+    const resultText = document.getElementById('dropdown-result');
+    const resultBox = document.getElementById('result-box');
+
+    dropdown.addEventListener('change', function() {
+      const selected = this.options[this.selectedIndex];
+      if (this.value) {
+        resultText.textContent = `Opsi ${selected.text} (Value: ${this.value})`;
+        resultBox.classList.add('active');
+      } else {
+        resultText.textContent = 'Belum ada pilihan';
+        resultBox.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

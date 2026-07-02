@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Loading - TestLab</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">🎯 TestLab</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/checkboxes">Checkboxes</a></li>
+        <li><a href="/dropdown">Dropdown</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/" class="back-link">← Kembali ke Home</a>
+
+    <div class="page-container">
+      <h1>⏳ Dynamic Loading</h1>
+      <p class="subtitle">Klik tombol untuk memuat konten secara dinamis</p>
+
+      <button id="load-btn" class="btn btn-primary" onclick="loadData()">
+        Mulai Loading
+      </button>
+
+      <div id="loading-container" class="loading-container" style="display: none;">
+        <div class="spinner"></div>
+        <p class="loading-text">Memuat data...</p>
+      </div>
+
+      <div id="result-box" class="result-box">
+        <h3>Hasil:</h3>
+        <p id="load-result">Klik tombol untuk memulai loading</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+  <script>
+    async function loadData() {
+      const btn = document.getElementById('load-btn');
+      const loading = document.getElementById('loading-container');
+      const resultBox = document.getElementById('result-box');
+      const resultText = document.getElementById('load-result');
+
+      btn.disabled = true;
+      btn.textContent = 'Loading...';
+      loading.style.display = 'block';
+      resultBox.classList.remove('active');
+
+      try {
+        const response = await fetch('/api/load-data');
+        const data = await response.json();
+        
+        resultText.textContent = data.message;
+        resultBox.classList.add('active');
+      } catch (error) {
+        resultText.textContent = 'Gagal memuat data!';
+        resultBox.classList.add('alert-error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Mulai Loading';
+        loading.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

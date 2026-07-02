@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Inputs - TestLab</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">🎯 TestLab</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/checkboxes">Checkboxes</a></li>
+        <li><a href="/dropdown">Dropdown</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="/" class="back-link">← Kembali ke Home</a>
+
+    <div class="page-container">
+      <h1>📝 Form Inputs</h1>
+      <p class="subtitle">Berbagai jenis input form untuk testing</p>
+
+      <% if (submitted) { %>
+        <div class="alert alert-success" id="submit-success">
+          Form berhasil disubmit!
+        </div>
+        <div class="result-box active" style="margin-bottom: 2rem;">
+          <h3>Data yang dikirim:</h3>
+          <p><strong>Nama:</strong> <%= submitted.nama %></p>
+          <p><strong>Email:</strong> <%= submitted.email %></p>
+          <p><strong>Pesan:</strong> <%= submitted.pesan %></p>
+        </div>
+      <% } %>
+
+      <form action="/form-inputs" method="POST" id="test-form">
+        <div class="form-group">
+          <label for="nama">Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Telepon</label>
+          <input type="tel" id="phone" name="phone" placeholder="08xxxxxxxxxx">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Masukkan password">
+        </div>
+
+        <div class="form-group">
+          <label for="angka">Angka</label>
+          <input type="number" id="angka" name="angka" min="0" max="100" placeholder="0-100">
+        </div>
+
+        <div class="form-group">
+          <label for="tanggal">Tanggal</label>
+          <input type="date" id="tanggal" name="tanggal">
+        </div>
+
+        <div class="form-group">
+          <label for="warna">Warna Favorit</label>
+          <input type="color" id="warna" name="warna" value="#6366f1">
+        </div>
+
+        <div class="form-group">
+          <label for="pesan">Pesan</label>
+          <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis pesan Anda..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Submit Form
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
